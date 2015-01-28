@@ -2,7 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Nginx Tips - Alexander's Blog</title>
+    <title>Настройка SSL на Nginx - Alexander's Blog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -10,18 +10,18 @@
 
 
 
-<link rel="canonical" href="http://avelytchko.github.io/nginx-tips.html">
+<link rel="canonical" href="http://avelytchko.github.io/nginx-ssl-setup.html">
 
         <meta name="author" content="Alexander Velytchko" />
         <meta name="keywords" content="nginx,linux" />
-        <meta name="description" content="Субдомены В nginx аналогом .htaccess являются только конфигурационные файлы. Если необходимо конвертировать содержимое .htaccess с Apache, можно воспользоваться онлайн-конвертером. # /etc/nginx/sites-available/default server { listen 80; root /var/www/rand.kiev.ua/cate; index index.php index.html index.htm; server_name cate.rand.kiev.ua; location ~ \.php$ { try_files $uri =404 ..." />
+        <meta name="description" content="Шифрование http-трафика - вещь необходимая, тем более что сертификат для домена не стоит ровным счетом ничего. Получим его совершенно бесплатно на год благодаря StartSSL. Регистрируемся, указав персональные данные, получаем сертификат аутентификации для сайта. Обязательно сохраните его, чтобы получить доступ на сайт в будущем, в Chrome его можно экспортировать в Settings/Advanced ..." />
 
         <meta property="og:site_name" content="Alexander's Blog" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Nginx Tips"/>
-        <meta property="og:url" content="http://avelytchko.github.io/nginx-tips.html"/>
-        <meta property="og:description" content="Субдомены В nginx аналогом .htaccess являются только конфигурационные файлы. Если необходимо конвертировать содержимое .htaccess с Apache, можно воспользоваться онлайн-конвертером. # /etc/nginx/sites-available/default server { listen 80; root /var/www/rand.kiev.ua/cate; index index.php index.html index.htm; server_name cate.rand.kiev.ua; location ~ \.php$ { try_files $uri =404 ..."/>
-        <meta property="article:published_time" content="2013-10-02" />
+        <meta property="og:title" content="Настройка SSL на Nginx"/>
+        <meta property="og:url" content="http://avelytchko.github.io/nginx-ssl-setup.html"/>
+        <meta property="og:description" content="Шифрование http-трафика - вещь необходимая, тем более что сертификат для домена не стоит ровным счетом ничего. Получим его совершенно бесплатно на год благодаря StartSSL. Регистрируемся, указав персональные данные, получаем сертификат аутентификации для сайта. Обязательно сохраните его, чтобы получить доступ на сайт в будущем, в Chrome его можно экспортировать в Settings/Advanced ..."/>
+        <meta property="article:published_time" content="2015-01-28" />
             <meta property="article:section" content="Linux" />
             <meta property="article:tag" content="nginx" />
             <meta property="article:tag" content="linux" />
@@ -80,10 +80,10 @@ Alexander's Blog            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://avelytchko.github.io/nginx-tips.html"
+                    <a href="http://avelytchko.github.io/nginx-ssl-setup.html"
                        rel="bookmark"
-                       title="Permalink to Nginx Tips">
-                        Nginx Tips
+                       title="Permalink to Настройка SSL на Nginx">
+                        Настройка SSL на Nginx
                     </a>
                 </h1>
             </header>
@@ -93,7 +93,7 @@ Alexander's Blog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-02T11:00:00+03:00"> Wed 02 October 2013</time>
+        <i class="fa fa-calendar"></i><time datetime="2015-01-28T18:00:00+02:00"> Wed 28 January 2015</time>
     </span>
 
 
@@ -105,53 +105,37 @@ Alexander's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h4>Субдомены</h4>
-<p>В nginx аналогом .htaccess являются только конфигурационные файлы. Если необходимо конвертировать содержимое .htaccess с Apache, можно воспользоваться <a href="http://winginx.ru/htaccess">онлайн-конвертером</a>.</p>
-<div class="highlight"><pre><span class="c1"># /etc/nginx/sites-available/default</span>
+                <p>Шифрование http-трафика - вещь необходимая, тем более что сертификат для домена не стоит ровным счетом ничего. Получим его совершенно бесплатно на год благодаря <a href="https://startssl.com">StartSSL</a>. Регистрируемся, указав персональные данные, получаем сертификат аутентификации для сайта. Обязательно сохраните его, чтобы получить доступ на сайт в будущем, в Chrome его можно экспортировать в Settings/Advanced/Manage Certificates/Your Certificates/Export. Затем переходим на сайте в <code>Control Panel</code> и в <code>Validations Wizard</code> выбрав <code>Domain Name Validatio</code>n, подтверждаем что являемся владельцем домена.</p>
+<p>Далее через ту же <code>Control panel</code> в <code>Certificates Wizard</code> создаем <code>Web Server SSL/TLS Certificate</code>, придумываем <code>Key Password</code> и указываем его. Нам сгенерировали приватный ключ, сохраните его как <code>ssl.key</code>. Выбираем домен, который мы валидировали и указываем 1 бесплатный поддомен, например <code>www</code>. Сохраняем сгенерированный сертификат как <code>ssl.crt</code>.</p>
+<p>Теперь, после того как мы получили все необходимое, приступаем к настройке nginx. Сперва расшифруем приватный ключ и изменим его права</p>
+<div class="highlight"><pre><span class="nv">$ </span>openssl rsa -in ssl.key -out /etc/nginx/conf.d/ssl.key
+<span class="nv">$ </span>chmod <span class="m">600</span> /etc/nginx/conf.d/ssl.key
+</pre></div>
+
+
+<p>Теперь скачаем промежуточные сертифкаты и объединим их с нашим в 1 универсальный сертификат</p>
+<div class="highlight"><pre><span class="nv">$ </span>wget http://www.startssl.com/certs/ca.pem
+<span class="nv">$ </span>wget http://www.startssl.com/certs/sub.class1.server.ca.pem
+<span class="nv">$ </span>cat ssl.crt sub.class1.server.ca.pem ca.pem &gt; /etc/nginx/conf.d/ssl-unified.crt
+<span class="nv">$ </span>chmod <span class="m">600</span> /etc/nginx/conf.d/ssl-unified.crt
+</pre></div>
+
+
+<p>В конфигурационные файлы Nginx нужно внести изменения, чтобы включить ssl</p>
+<div class="highlight"><pre><span class="c1"># /etc/nginx/sites-enabled/default</span>
 <span class="k">server</span> <span class="p">{</span>
-    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span>
-
-    <span class="kn">root</span> <span class="s">/var/www/rand.kiev.ua/cate</span><span class="p">;</span>
-    <span class="kn">index</span> <span class="s">index.php</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">cate.rand.kiev.ua</span><span class="p">;</span>
-
-    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
-            <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
-            <span class="kn">fastcgi_split_path_info</span> <span class="s">^(.+\.php)(/.+)</span>$<span class="p">;</span>
-            <span class="c1"># With php5-fpm:</span>
-            <span class="kn">fastcgi_pass</span> <span class="s">unix:/var/run/php5-fpm.sock</span><span class="p">;</span>
-            <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
-            <span class="kn">include</span> <span class="s">fastcgi_params</span><span class="p">;</span>
+        <span class="kn">listen</span>   <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+        <span class="kn">ssl_certificate</span> <span class="s">/etc/nginx/conf.d/ssl-unified.crt</span><span class="p">;</span>
+        <span class="kn">ssl_certificate_key</span> <span class="s">/etc/nginx/conf.d/ssl.key</span><span class="p">;</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$ssl_protocol</span> <span class="p">=</span> <span class="s">&quot;&quot;)</span> <span class="p">{</span>
+                <span class="kn">rewrite</span> <span class="s">^</span>   <span class="s">https://</span><span class="nv">$server_name$request_uri?</span> <span class="s">permanent</span><span class="p">;</span>
         <span class="p">}</span>
-
 <span class="p">}</span>
 </pre></div>
 
 
-<p>Файл субдомена необходимо размещать в <code>/etc/nginx/sites-available/</code> , а потом создавать символическую ссылку в <code>/etc/nginx/sites-enabled/</code>, например:</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo ln -s /etc/nginx/sites-available/cate.rand.kiev.ua /etc/nginx/sites-enabled/
-<span class="nv">$ </span>sudo /etc/init.d/nginx restart
-</pre></div>
-
-
-<hr />
-<h4>Авторизация</h4>
-<div class="highlight"><pre><span class="c1"># /etc/nginx/sites-available/default</span>
-        <span class="k">location</span> <span class="s">/</span> <span class="p">{</span>
-                <span class="kn">allow</span> <span class="mi">89</span><span class="s">.252.19.115</span><span class="p">;</span>
-                <span class="kn">allow</span> <span class="mi">188</span><span class="s">.239.22.152</span><span class="p">;</span>
-                <span class="kn">allow</span> <span class="mi">195</span><span class="s">.234.5.13</span><span class="p">;</span>
-                <span class="kn">allow</span> <span class="mi">62</span><span class="s">.109.18.80</span><span class="p">;</span>
-                <span class="kn">allow</span> <span class="mi">127</span><span class="s">.0.0.1</span><span class="p">;</span>
-                <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
-                <span class="kn">auth_basic</span> <span class="s">&quot;Enter</span> <span class="s">Password&quot;</span><span class="p">;</span>
-                <span class="kn">auth_basic_user_file</span> <span class="s">/etc/nginx/htpasswd</span><span class="p">;</span>
-        <span class="p">}</span>
-</pre></div>
-
-
-<p>Чтобы сгенерировать пароль, можно воспользоваться <a href="http://aspirine.org/htpasswd_en.html">онлайн-генератором</a> или коммандой:</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">printf</span> <span class="s2">&quot;Rand:</span><span class="k">$(</span>openssl passwd -apr1 PassW0rd<span class="k">)</span><span class="s2">\n&quot;</span> &gt;&gt; htpasswd
+<p>Осталось перезагрузить сервер, чтобы изменения вступили в силу</p>
+<div class="highlight"><pre><span class="nv">$ </span>/etc/inid.d/nginx restart
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -164,8 +148,8 @@ Alexander's Blog            </a>
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'avelytchko'; // required: replace example with your forum shortname
 
-                    var disqus_identifier = 'nginx-tips';
-                var disqus_url = 'http://avelytchko.github.io/nginx-tips.html';
+                    var disqus_identifier = 'nginx-ssl-setup';
+                var disqus_url = 'http://avelytchko.github.io/nginx-ssl-setup.html';
 
             var disqus_config = function () {
                 this.language = "en";
