@@ -14,13 +14,13 @@
 
         <meta name="author" content="Alexander Velytchko" />
         <meta name="keywords" content="network,linux" />
-        <meta name="description" content="Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря TunnerBroker. После регистрации создадим туннель Create Regular Tunnel и выберем ближайший к нам сервер, в моем случае это был Frankfurt, DE, указав IP адресс вашего сервера как IPv4 Endpoint ..." />
+        <meta name="description" content="Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря TunnelBroker. После регистрации создадим туннель Create Regular Tunnel и выберем ближайший к нам сервер, в моем случае это был Frankfurt, DE, указав IP адресс вашего сервера как IPv4 Endpoint ..." />
 
         <meta property="og:site_name" content="Alexander's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Настройка ipv6 туннеля"/>
         <meta property="og:url" content="http://avelytchko.github.io/ipv6-tunnel-setup.html"/>
-        <meta property="og:description" content="Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря TunnerBroker. После регистрации создадим туннель Create Regular Tunnel и выберем ближайший к нам сервер, в моем случае это был Frankfurt, DE, указав IP адресс вашего сервера как IPv4 Endpoint ..."/>
+        <meta property="og:description" content="Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря TunnelBroker. После регистрации создадим туннель Create Regular Tunnel и выберем ближайший к нам сервер, в моем случае это был Frankfurt, DE, указав IP адресс вашего сервера как IPv4 Endpoint ..."/>
         <meta property="article:published_time" content="2015-01-28" />
             <meta property="article:section" content="Linux" />
             <meta property="article:tag" content="network" />
@@ -105,7 +105,7 @@ Alexander's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря <a href="https://www.tunnelbroker.net">TunnerBroker</a>. После регистрации создадим туннель <a href="https://www.tunnelbroker.net/new_tunnel.php">Create Regular Tunnel</a> и выберем ближайший к нам сервер, в моем случае это был <code>Frankfurt, DE</code>, указав IP адресс вашего сервера как <code>IPv4 Endpoint</code>.</p>
+                <p>Часто к серверу нужно достучаться по ipv6, но провайдер или хостер не предоставляет такой услуги. Настроим ipv4 to ipv6 туннелирование благодаря <a href="https://www.tunnelbroker.net">TunnelBroker</a>. После регистрации создадим туннель <a href="https://www.tunnelbroker.net/new_tunnel.php">Create Regular Tunnel</a> и выберем ближайший к нам сервер, в моем случае это был <code>Frankfurt, DE</code>, указав IP адресс вашего сервера как <code>IPv4 Endpoint</code>.</p>
 <p>Настройка туннеля довольна тривиальна. Добавим следующие строки в конфигурационный файл <code>/etc/network/interfaces</code> (ОС - Debian/Ubuntu), указав свои значения</p>
 <div class="highlight"><pre>auto he-ipv6
 iface he-ipv6 inet6 v4tunnel
@@ -118,7 +118,7 @@ iface he-ipv6 inet6 v4tunnel
 </pre></div>
 
 
-<p>Вот и всё, достаточно выполнить <code>/etc/init.d/networking restart</code> или перезагрузить в сервер, чтобы туннель заработал. Если нет - убедитесь, что у вас не закрыт ICMP. Но иногда бывает так, что хостер не даёт возможности использовать sit устройства, например, если это OpenVZ VPS. В таком случае нам поможет <a href="https://code.google.com/p/tb-tun/">tb-tun</a>. Скачаем и скомпилируем его из исходников</p>
+<p>Вот и всё, достаточно выполнить <code>/etc/init.d/networking restart</code> или перезагрузить сервер, чтобы туннель заработал. Если нет - убедитесь, что у вас не закрыт ICMP. Но иногда бывает так, что хостер не даёт возможности использовать sit устройства, например, если это OpenVZ VPS. В таком случае нам поможет <a href="https://code.google.com/p/tb-tun/">tb-tun</a>. Скачаем и скомпилируем его из исходников</p>
 <div class="highlight"><pre><span class="nv">$ </span>apt-get install iproute gcc
 <span class="nv">$ </span><span class="nb">cd</span> /root
 <span class="nv">$ </span>wget http://tb-tun.googlecode.com/files/tb-tun_r18.tar.gz
@@ -187,7 +187,7 @@ touch /var/lock/ipv6tb
 </pre></div>
 
 
-<p>Теперь проверьте, работает ли у вас ipv6 теперь</p>
+<p>Теперь проверьте, работает ли у вас ipv6</p>
 <div class="highlight"><pre>ping6 -c <span class="m">5</span> google.com
 </pre></div>
 
@@ -266,13 +266,13 @@ touch /var/lock/ipv6tb
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="http://avelytchko.github.io/tag/pelican.html">
-                            pelican
+                        <a href="http://avelytchko.github.io/tag/ruhoh.html">
+                            ruhoh
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="http://avelytchko.github.io/tag/ruhoh.html">
-                            ruhoh
+                        <a href="http://avelytchko.github.io/tag/pelican.html">
+                            pelican
                         </a>
                     </li>
                 </ul>
