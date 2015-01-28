@@ -72,7 +72,18 @@ Alexander's Blog            </a>
 
             <article>
                 <h2><a href="/nginx-tips.html">Nginx Tips</a></h2>
-                <div class="summary">
+                <div class="summary"><h4>Субдомены</h4>
+<p>В nginx аналогом .htaccess являются только конфигурационные файлы. Если необходимо конвертировать содержимое .htaccess с Apache, можно воспользоваться <a href="http://winginx.ru/htaccess">онлайн-конвертером</a>.</p>
+<div class="highlight"><pre><span class="c1"># /etc/nginx/sites-available/default</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>   <span class="mi">80</span><span class="p">;</span>
+
+    <span class="kn">root</span> <span class="s">/var/www/rand.kiev.ua/cate</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.php</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">cate.rand.kiev.ua</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
+            <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404 ...</span></pre></div>
                     <a class="btn btn-default btn-xs" href="/nginx-tips.html">more ...</a>
                 </div>
             </article>
@@ -101,23 +112,23 @@ Alexander's Blog            </a>
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/pelican.html">
-                            pelican
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/ruhoh.html">
                             ruhoh
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/linux.html">
-                            linux
+                        <a href="/tag/pelican.html">
+                            pelican
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
                         <a href="/tag/nginx.html">
                             nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/linux.html">
+                            linux
                         </a>
                     </li>
                 </ul>
