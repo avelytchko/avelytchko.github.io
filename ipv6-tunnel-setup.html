@@ -118,7 +118,7 @@ iface he-ipv6 inet6 v4tunnel
 </pre></div>
 
 
-<p>Вот и всё, достаточно выполнить <code>/etc/init.d/networking restart</code> или перезагрузить в сервер, чтобы туннель заработал. Если нет - убедитесь, что у вас не закрыт ICMP. Но иногда так бывает, что хостер не даёт возможности использовать sit устройства, например, если это OpenVZ VPS. В таком случае нам поможет <a href="https://code.google.com/p/tb-tun/">tb-tun</a>. Скачаем и скомпилируем его из исходников</p>
+<p>Вот и всё, достаточно выполнить <code>/etc/init.d/networking restart</code> или перезагрузить в сервер, чтобы туннель заработал. Если нет - убедитесь, что у вас не закрыт ICMP. Но иногда бывает так, что хостер не даёт возможности использовать sit устройства, например, если это OpenVZ VPS. В таком случае нам поможет <a href="https://code.google.com/p/tb-tun/">tb-tun</a>. Скачаем и скомпилируем его из исходников</p>
 <div class="highlight"><pre><span class="nv">$ </span>apt-get install iproute gcc
 <span class="nv">$ </span><span class="nb">cd</span> /root
 <span class="nv">$ </span>wget http://tb-tun.googlecode.com/files/tb-tun_r18.tar.gz
@@ -187,9 +187,12 @@ touch /var/lock/ipv6tb
 </pre></div>
 
 
-<p>Проверьте, работает ли у вас ipv6 теперь</p>
+<p>Теперь проверьте, работает ли у вас ipv6 теперь</p>
 <div class="highlight"><pre>ping6 -c <span class="m">5</span> google.com
 </pre></div>
+
+
+<p>При написании использовалась информация с <a href="http://www.cybermilitia.net/2013/07/22/ipv6-tunnel-on-openvz/">cybermilitia.net</a></p>
             </div>
             <!-- /.entry-content -->
     <hr/>
