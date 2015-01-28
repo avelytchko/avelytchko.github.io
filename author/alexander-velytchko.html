@@ -1,43 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+>
 <head>
-        <meta charset="utf-8" />
-        <title>Alexander's Blog - Alexander Velytchko</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <title>Articles by Alexander Velytchko - Alexander's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+
+
+
+        <meta name="author" content="Alexander Velytchko" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Alexander's Blog" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Alexander's Blog"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:description" content="Alexander's Blog"/>
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
 </head>
+<body>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Alexander's Blog </a></h1>
-                <nav><ul>
-                    <li><a href="/category/linux.html">Linux</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                    <li><a href="/category/ruby.html">Ruby</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Alexander's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="/category/linux.html">Linux</a>
+                        </li>
+                        <li >
+                            <a href="/category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="/category/ruby.html">Ruby</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/pelican-install.html">Installing Pelican</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-01-28T15:00:00+02:00">
-                Published: Wed 28 January 2015
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-01-28T15:00:00+02:00">
-                Updated: Wed 28 January 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/alexander-velytchko.html">Alexander Velytchko</a>
-        </address>
-<p>In <a href="/category/python.html">Python</a>. </p>
-<p>tags: <a href="/tag/pelican.html">pelican</a> <a href="/tag/publishing.html">publishing</a> </p>
-</footer><!-- /.post-info --><p>Pelican - это статический генератор сайтов, написанный на Python. Он похож на Ruhoh, но в отличие от него, активно развивается.</p>
+            <article>
+                <h2><a href="/pelican-install.html">Installing Pelican</a></h2>
+                <div class="summary"><p>Pelican - это статический генератор сайтов, написанный на Python. Он похож на Ruhoh, но в отличие от него, активно развивается.</p>
 <h4>Установка</h4>
 <p>Сперва установим необходимые пакеты, если их нет. Pelican рекомендует использовать Python 2.7</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python-pip python2.7
@@ -45,128 +79,14 @@
 
 
 <p>Воспользуемся виртуальным окружением virtualenv, чтобы не инсталлировать пакеты в систему</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
-<span class="nv">$ </span>mkdir -p ~/virtualenvs/pelican
-<span class="nv">$ </span>virtualenv ~/virtualenvs/pelican
-<span class="nv">$ </span><span class="nb">cd</span> ~/virtualenvs/pelican
-<span class="nv">$ </span><span class="nb">source </span>bin/activate
-<span class="nv">$ </span>pip install pelican Markdown typogrify
-</pre></div>
-
-
-<p>Отлично, всё установлено и готово к работе. В составе Pelican'а есть замечательный визард, воспользуемся им</p>
-<div class="highlight"><pre><span class="nv">$ </span>pelican-quickstart
-</pre></div>
-
-
-<div class="highlight"><pre>Welcome to pelican-quickstart v3.5.0.
-
-This script will help you create a new Pelican-based website.
-
-Please answer the following questions so this script can generate the files
-needed by Pelican.
-
-
-&gt; Where do you want to create your new web site? [.] /home/rand/Docs/avelytchko.github.io
-&gt; What will be the title of this web site? Alexander&#39;s Blog
-&gt; Who will be the author of this web site? Alexander Velytchko 
-&gt; What will be the default language of this web site? [en] ru
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) Y
-&gt; What is your URL prefix? (see above example; no trailing slash) http://avelytchko.github.io
-&gt; Do you want to enable article pagination? (Y/n) Y
-&gt; How many articles per page do you want? [10] 
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n) Y
-&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? (Y/n) Y
-&gt; Do you want to upload your website using FTP? (y/N) N
-&gt; Do you want to upload your website using SSH? (y/N) N
-&gt; Do you want to upload your website using Dropbox? (y/N) N
-&gt; Do you want to upload your website using S3? (y/N) N
-&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) N
-&gt; Do you want to upload your website using GitHub Pages? (y/N) Y
-&gt; Is this your personal page (username.github.io)? (y/N) Y
-Done. Your new project is available at /home/rand/Docs/avelytchko.github.io
-</pre></div>
-
-
-<p>Теперь добавим отличную Bootstrap тему к нашему будущему блогу</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install git
-<span class="nv">$ </span>git clone https://github.com/DandyDev/pelican-bootstrap3.git
-</pre></div>
-
-
-<p>Чтобы Pelican использовал ее, нужно добавить переменную <code>THEME</code> в файл <code>pelicanconf.py</code>, указывающую на директорию, в которой находится тема</p>
-<div class="highlight"><pre>THEME = &#39;/home/rand/Docs/avelytchko.github.io/pelican-bootstrap3&#39;
-</pre></div>
-
-
-<hr />
-<h4>Публикация</h4>
-<p>Приступим к написанию контента. Для языка разметки я выбрал Markdown, создайте файл с расширением .md в директории <code>content</code> </p>
-<div class="highlight"><pre><span class="nv">$ </span>vim /home/rand/Docs/avelytchko.github.io/content/pelican-install.md
-</pre></div>
-
-
-<div class="highlight"><pre><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
-<span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
-<span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span>
-<span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span>
-<span class="n">Authors</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span><span class="o">,</span> <span class="n">Conan</span> <span class="n">Doyle</span>
-<span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
-
-<span class="n">This</span> <span class="k">is</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">my</span> <span class="kd">super</span> <span class="n">blog</span> <span class="n">post</span><span class="o">.</span>
-</pre></div>
-
-
-<p>Сгенерируем статичный сайт и запустим отладочный веб-сервер перед публикацией, чтобы посмотреть на результат нашей работы, доступный по адресу <a href="http://localhost:8000">http://localhost:8000</a></p>
-<div class="highlight"><pre><span class="nv">$ </span>pelican content
-Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span class="o">)</span>, <span class="m">0</span> draft<span class="o">(</span>s<span class="o">)</span> and <span class="m">0</span> page<span class="o">(</span>s<span class="o">)</span> in 0.57 seconds.
-<span class="nv">$ </span><span class="nb">cd </span>output
-<span class="nv">$ </span>python -m SimpleHTTPServer
-</pre></div>
-
-
-<p>Если все прошло успешно, то пора приступить к публикации нашего блога на Github. Подразумевается, что вы уже добавили публичный ключ <code>~/.ssh/id_rsa.pub</code> в свой аккаунт и создали репозиторий username.github.io</p>
-<div class="highlight"><pre><span class="nv">$ </span><span class="nb">eval</span> <span class="sb">`</span>ssh-agent<span class="sb">`</span>
-<span class="nv">$ </span>ssh-add
-<span class="nv">$ </span><span class="nb">cd </span>output/
-<span class="nv">$ </span>git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>
-<span class="nv">$ </span>git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
-<span class="nv">$ </span>git init
-<span class="nv">$ </span>git remote add origin git@github.com:avelytchko/avelytchko.github.io.git
-<span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s1">&#39;first commit&#39;</span>
-<span class="nv">$ </span>git push origin master
-</pre></div><p>There are <a href="/pelican-install.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/ruhoh-install.html" rel="bookmark"
-                           title="Permalink to Installing Ruhoh">Installing Ruhoh</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-10-03T15:00:00+03:00">
-                Published: Thu 03 October 2013
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-01-28T16:00:00+02:00">
-                Updated: Wed 28 January 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/alexander-velytchko.html">Alexander Velytchko</a>
-        </address>
-<p>In <a href="/category/ruby.html">Ruby</a>. </p>
-<p>tags: <a href="/tag/ruhoh.html">ruhoh</a> <a href="/tag/publishing.html">publishing</a> </p>
-</footer><!-- /.post-info -->                <p>Ruhoh - это статический генератор сайтов, написанный на Ruby.</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo ...</pre></div>
+                    <a class="btn btn-default btn-xs" href="/pelican-install.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/ruhoh-install.html">Installing Ruhoh</a></h2>
+                <div class="summary"><p>Ruhoh - это статический генератор сайтов, написанный на Ruby.</p>
 <h4>Установка</h4>
 <p>Для Ruhoh нужен ruby и git. В Debian/Ubuntu устанавливается с помощью apt-get, в среде Windows нужно скачать инсталляторы Ruby и DevKit с <a href="http://rubyinstaller.org/downloads/">rubyinstaller.org</a> и git с <a href="http://git-scm.com/downloads">git-scm.com</a>.</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install ruby ruby-dev git gcc libxml2-dev libxslt1-dev zlib1g-dev
@@ -174,32 +94,13 @@ Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span c
 
 
 <p>Установка ...</p>
-                <a class="readmore" href="/ruhoh-install.html">read more</a>
-<p>There are <a href="/ruhoh-install.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/nginx-tips.html" rel="bookmark"
-                           title="Permalink to Nginx Tips">Nginx Tips</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-10-02T11:00:00+03:00">
-                Published: Wed 02 October 2013
-        </abbr>
-		<br />
-        <abbr class="modified" title="2015-01-28T16:00:00+02:00">
-                Updated: Wed 28 January 2015
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/alexander-velytchko.html">Alexander Velytchko</a>
-        </address>
-<p>In <a href="/category/linux.html">Linux</a>. </p>
-<p>tags: <a href="/tag/nginx.html">nginx</a> <a href="/tag/linux.html">linux</a> </p>
-</footer><!-- /.post-info -->                <h4>Субдомены</h4>
+                    <a class="btn btn-default btn-xs" href="/ruhoh-install.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/nginx-tips.html">Nginx Tips</a></h2>
+                <div class="summary"><h4>Субдомены</h4>
 <p>В nginx аналогом .htaccess являются только конфигурационные файлы. Если необходимо конвертировать содержимое .htaccess с Apache, можно воспользоваться <a href="http://winginx.ru/htaccess">онлайн-конвертером</a>.</p>
 <div class="highlight"><pre><span class="c1"># /etc/nginx/sites-available/default</span>
 <span class="k">server</span> <span class="p">{</span>
@@ -211,50 +112,105 @@ Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span c
 
     <span class="kn">location</span> <span class="p">~</span> <span class="sr">\.php$</span> <span class="p">{</span>
             <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404 ...</span></pre></div>
-                <a class="readmore" href="/nginx-tips.html">read more</a>
-<p>There are <a href="/nginx-tips.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+                    <a class="btn btn-default btn-xs" href="/nginx-tips.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="#"><i class="fa fa-you-can-add-links-in-your-config-file-square fa-lg"></i> You can add links in your config file</a></li>
+                <li class="list-group-item"><a href="#"><i class="fa fa-another-social-link-square fa-lg"></i> Another social link</a></li>
+              </ul>
+            </li>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
 
-<script type="text/javascript">
-    var disqus_shortname = 'avelytchko';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="/tag/publishing.html">
+                            publishing
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/nginx.html">
+                            nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/pelican.html">
+                            pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/linux.html">
+                            linux
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/ruhoh.html">
+                            ruhoh
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://jinja.pocoo.org/" target="_blank">
+                Jinja2
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" target="_blank">
+                You can modify those links in your config file
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Alexander Velytchko
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
 </body>
 </html>
