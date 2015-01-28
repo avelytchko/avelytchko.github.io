@@ -105,7 +105,7 @@ Alexander's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Шифрование http-трафика - вещь необходимая, тем более что сертификат для домена не стоит ровным счетом ничего. Получим его совершенно бесплатно на год благодаря <a href="https://startssl.com">StartSSL</a>. Регистрируемся, указав персональные данные, получаем сертификат аутентификации для сайта. Обязательно сохраните его, чтобы получить доступ на сайт в будущем, в Chrome его можно экспортировать в Settings/Advanced/Manage Certificates/Your Certificates/Export. Затем переходим на сайте в <code>Control Panel</code> и в <code>Validations Wizard</code> выбрав <code>Domain Name Validatio</code>n, подтверждаем что являемся владельцем домена.</p>
+                <p>Шифрование http-трафика - вещь необходимая, тем более что сертификат для домена не стоит ровным счетом ничего. Получим его совершенно бесплатно на год благодаря <a href="https://startssl.com">StartSSL</a>. Регистрируемся, указав персональные данные, получаем сертификат аутентификации для сайта. Обязательно сохраните его, чтобы получить доступ на сайт в будущем, в Chrome его можно экспортировать в Settings/Advanced/Manage Certificates/Your Certificates/Export. Затем переходим на сайте в <code>Control Panel</code> и в <code>Validations Wizard</code> выбрав <code>Domain Name Validation</code>, подтверждаем что являемся владельцем домена.</p>
 <p>Далее через ту же <code>Control panel</code> в <code>Certificates Wizard</code> создаем <code>Web Server SSL/TLS Certificate</code>, придумываем <code>Key Password</code> и указываем его. Нам сгенерировали приватный ключ, сохраните его как <code>ssl.key</code>. Выбираем домен, который мы валидировали и указываем 1 бесплатный поддомен, например <code>www</code>. Сохраняем сгенерированный сертификат как <code>ssl.crt</code>.</p>
 <p>Теперь, после того как мы получили все необходимое, приступаем к настройке nginx. Сперва расшифруем приватный ключ и изменим его права</p>
 <div class="highlight"><pre><span class="nv">$ </span>openssl rsa -in ssl.key -out /etc/nginx/conf.d/ssl.key
@@ -190,18 +190,23 @@ Alexander's Blog            </a>
             <li class="list-group-item"><a href="http://avelytchko.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="http://avelytchko.github.io/tag/nginx.html">
-                            nginx
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="http://avelytchko.github.io/tag/linux.html">
                             linux
                         </a>
                     </li>
-                    <li class="list-group-item tag-1">
+                    <li class="list-group-item tag-2">
                         <a href="http://avelytchko.github.io/tag/publishing.html">
                             publishing
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-2">
+                        <a href="http://avelytchko.github.io/tag/nginx.html">
+                            nginx
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://avelytchko.github.io/tag/network.html">
+                            network
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
