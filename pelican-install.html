@@ -105,20 +105,24 @@ Alexander's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>Pelican - это статический генератор сайтов, написанный на Python. Он похож на Ruhoh, но в отличие от него, активно развивается.
-Установка
-Сперва установим необходимые пакеты, если их нет. Pelican рекомендует использовать Python 2.7
-    :::bash
-    sudo apt-get install python-pip python2.7</p>
-<p>Воспользуемся виртуальным окружением virtualenv, чтобы не инсталлировать пакеты в систему
-    :::bash
-    $ sudo pip install virtualenv
-    $ mkdir -p ~/virtualenvs/pelican
-    $ virtualenv ~/virtualenvs/pelican
-    $ cd ~/virtualenvs/pelican
-    $ source bin/activate
-    $ pip install pelican Markdown typogrify</p>
-<p>Отлично, всё установлено и готово к работе. В составе Pelican'а есть отличный визар, воспользуемся им</p>
+                <p>Pelican - это статический генератор сайтов, написанный на Python. Он похож на Ruhoh, но в отличие от него, активно развивается.</p>
+<h4>Установка</h4>
+<p>Сперва установим необходимые пакеты, если их нет. Pelican рекомендует использовать Python 2.7</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python-pip python2.7
+</pre></div>
+
+
+<p>Воспользуемся виртуальным окружением virtualenv, чтобы не инсталлировать пакеты в систему</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+<span class="nv">$ </span>mkdir -p ~/virtualenvs/pelican
+<span class="nv">$ </span>virtualenv ~/virtualenvs/pelican
+<span class="nv">$ </span><span class="nb">cd</span> ~/virtualenvs/pelican
+<span class="nv">$ </span><span class="nb">source </span>bin/activate
+<span class="nv">$ </span>pip install pelican Markdown typogrify
+</pre></div>
+
+
+<p>Отлично, всё установлено и готово к работе. В составе Pelican'а есть замечательный визард, воспользуемся им</p>
 <div class="highlight"><pre><span class="nv">$ </span>pelican-quickstart
 </pre></div>
 
@@ -152,16 +156,20 @@ Done. Your new project is available at /home/rand/Docs/avelytchko.github.io
 </pre></div>
 
 
-<p>Теперь добавим отличную Bootstrap тему к нашему будущему блогу.
-    :::bash
-    sudo apt-get install git
-    git clone https://github.com/DandyDev/pelican-bootstrap3.git</p>
-<p>Чтобы Pelican использовал тему, нужно добавить переменную <code>THEME</code> в файл <code>pelicanconf.py</code>, указывающая на директорию, в которой находится тема</p>
+<p>Теперь добавим отличную Bootstrap тему к нашему будущему блогу</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install git
+<span class="nv">$ </span>git clone https://github.com/DandyDev/pelican-bootstrap3.git
+</pre></div>
+
+
+<p>Чтобы Pelican использовал ее, нужно добавить переменную <code>THEME</code> в файл <code>pelicanconf.py</code>, указывающую на директорию, в которой находится тема</p>
 <div class="highlight"><pre>THEME = &#39;/home/rand/Docs/avelytchko.github.io/pelican-bootstrap3&#39;
 </pre></div>
 
 
-<p>Теперь приступим к написанию контента. Для языка разметки я выбрал Markdown, создайте файл с расширением .md в директории <code>content</code> </p>
+<hr />
+<h4>Публикация</h4>
+<p>Приступим к написанию контента. Для языка разметки я выбрал Markdown, создайте файл с расширением .md в директории <code>content</code> </p>
 <div class="highlight"><pre><span class="nv">$ </span>vim /home/rand/Docs/avelytchko.github.io/content/pelican-install.md
 </pre></div>
 
@@ -184,6 +192,20 @@ Done. Your new project is available at /home/rand/Docs/avelytchko.github.io
 Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span class="o">)</span>, <span class="m">0</span> draft<span class="o">(</span>s<span class="o">)</span> and <span class="m">0</span> page<span class="o">(</span>s<span class="o">)</span> in 0.57 seconds.
 <span class="nv">$ </span><span class="nb">cd </span>output
 <span class="nv">$ </span>python -m SimpleHTTPServer
+</pre></div>
+
+
+<p>Если все прошло успешно, то пора приступить к публикации нашего блога на Github. Подразумевается, что вы уже добавили публичный ключ <code>~/.ssh/id_rsa.pub</code> в свой аккаунт и создали репозиторий username.github.io</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">eval</span> <span class="sb">`</span>ssh-agent<span class="sb">`</span>
+<span class="nv">$ </span>ssh-add
+<span class="nv">$ </span><span class="nb">cd </span>output/
+<span class="nv">$ </span>git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>
+<span class="nv">$ </span>git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+<span class="nv">$ </span>git init
+<span class="nv">$ </span>git remote add origin git@github.com:avelytchko/avelytchko.github.io.git
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s1">&#39;first commit&#39;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -213,11 +235,6 @@ Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span c
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="/tag/linux.html">
-                            linux
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-4">
                         <a href="/tag/pelican.html">
                             pelican
                         </a>
@@ -225,6 +242,11 @@ Done: Processed <span class="m">1</span> article<span class="o">(</span>s<span c
                     <li class="list-group-item tag-4">
                         <a href="/tag/ruhoh.html">
                             ruhoh
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="/tag/linux.html">
+                            linux
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
